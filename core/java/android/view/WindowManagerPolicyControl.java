@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.internal.policy.impl;
+package android.view;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -22,13 +22,12 @@ import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.ArraySet;
 import android.util.Slog;
-import android.view.View;
-import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.view.WindowManagerPolicy.WindowState;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Iterator;
 
 /**
  * Runtime adjustments applied to the global window policy.
@@ -47,8 +46,10 @@ import java.io.StringWriter;
  *
  * Separate multiple name-value pairs with ':'
  *   e.g. "immersive.status=apps:immersive.preconfirms=*"
+ *
+ *   @hide
  */
-public class PolicyControl {
+public class WindowManagerPolicyControl {
     private static String TAG = "PolicyControl";
     private static boolean DEBUG = false;
 
@@ -188,7 +189,7 @@ public class PolicyControl {
         String value = null;
         try {
             value = Settings.Global.getStringForUser(context.getContentResolver(),
-                    Settings.Global.POLICY_CONTROL,
+                    key,
                     UserHandle.USER_CURRENT);
             if (sSettingValue != null && sSettingValue.equals(value)) return;
             setFilters(value);
