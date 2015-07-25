@@ -228,8 +228,6 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     protected int mZenMode;
 
-    protected AppCircleSidebar mAppCircleSidebar;
-
     private ArrayList<String> mDndList;
     private ArrayList<String> mBlacklist;
 
